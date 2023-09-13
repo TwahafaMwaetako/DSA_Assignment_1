@@ -6,6 +6,8 @@ Released on: 30/08/2023.
 Due date: 22/09/ 2023 at midnight
 Total Marks: 100
 
+Group Members: !Haokhoeb Eichab(220007454), 
+
 Question 1: Restful APIs
 The problem centers on developing a Restful API for effectively managing staff, their offices, and
 allocated courses within the Faculty of Computing and Informatics. These offices can
@@ -29,6 +31,8 @@ Deliverables:
 • Client Implementation in a Ballerina that effectively interacts with the designed API.(10
 marks)
 • Service Implementation (25 Marks)
+
+
 Question 2: Remote invocation
 Your task is to design and implement a library system using gRPC that allows two types of users—
 a student and a librarian—to interact with the system. The system should provide essential
@@ -63,35 +67,12 @@ perform operations as implemented in the service. Clients should be able to hand
 display relevant information to the user.
 Please be aware that you have the freedom to include additional fields in your records if you
 believe they would enhance the performance and overall quality of your system.
-Deliverables:
 
-We will follow the criteria below to assess this problem:
-• Definition of the remote interface in Protocol Buffer. (15 marks)
-• Implementation of the gRPC client in the Ballerina language. (10 marks)
-• Implementation of the gRPC server and server-side logic in response to the remote
-invocations in the Ballerina Language. [25 marks]
 
-Submission Instructions
-• This assignment is to be completed by groups of four students each.
-• For each group, a repository should be created on Gitlab or Github. The repository should
-have all group members set up as contributors.
-• All assignments must be uploaded to a GitHub or GitLab repository. Students who haven't
-pushed any codes to the repository will not be given the opportunity to present and
-defend the assignment. More particularly, if a student’s username does not appear in the
-commit log of the group repository, that student will be assumed not to have contributed
-to the project and thus be awarded the mark 0.
-• The assignment will be group work, but individual marks will be allocated based on each
-student's contribution to the assignment.
-• Marks for the assignment will only be allocated to students who have presented the
-assignment.
-• It’s the responsibility of all group members to make sure that they are available for the
-assignment presentation. An assignment cannot be presented more than once.
-• The submission date is Sunday, September 22, 2023, at midnight. Please note that
-commits after that deadline will not be accepted. Therefore, a submission will be assessed
-based on the clone of the repository at the deadline.
-• Any group that fails to submit on time will be awarded the mark 0. Late Submiss
-• There should be no assumption about the execution environment of your code. It could be
-run using a specific framework or on the command line.
-• In the case of plagiarism (groups copying from each other or submissions copied from the
-Internet), all submissions involved will be awarded the mark 0, and each student will
-receive a warning.
+Deleverables:
+Client1 and Server1 are the solutions to Question1.
+Client1 and Server1 are the solutions to Question1.
+
+
+
+
