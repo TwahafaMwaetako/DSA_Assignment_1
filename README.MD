@@ -69,7 +69,7 @@ Please be aware that you have the freedom to include additional fields in your r
 believe they would enhance the performance and overall quality of your system.
 
 
-Deleverables:
+Deliverables:
 Client1 and Server1 are the solutions to Question1.
 Client1 and Server1 are the solutions to Question1.
 
