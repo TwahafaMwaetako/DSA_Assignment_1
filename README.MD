@@ -3,8 +3,9 @@ Course Title: Distributed Systems and Applications
 Course Code: DSA612S
 Assessment: First Assignment
 Released on: 30/08/2023.
- Due date: 22/09/ 2023 at midnight
+Due date: 22/09/ 2023 at midnight
 Total Marks: 100
+
 Question 1: Restful APIs
 The problem centers on developing a Restful API for effectively managing staff, their offices, and
 allocated courses within the Faculty of Computing and Informatics. These offices can
@@ -69,6 +70,7 @@ We will follow the criteria below to assess this problem:
 • Implementation of the gRPC client in the Ballerina language. (10 marks)
 • Implementation of the gRPC server and server-side logic in response to the remote
 invocations in the Ballerina Language. [25 marks]
+
 Submission Instructions
 • This assignment is to be completed by groups of four students each.
 • For each group, a repository should be created on Gitlab or Github. The repository should
