@@ -1,5 +1,0 @@
-openapi: 3.0.0
-info:
-  title: Faculty of Computing and Informatics Staff API
-  description: This API provides a RESTful interface for managing staff, their offices, and allocated courses.
-  version: 1.0.0

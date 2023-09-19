@@ -61,6 +61,7 @@ client and the server in the Ballerina Language.
 Server Implementation:
 Implement the server logic using the Ballerina Language and gRPC. Your server should handle
 incoming requests from clients and perform appropriate actions based on the requested operation.
+
 Client Implementation:
 The clients should be able to use the generated gRPC client code to connect to the server and
 perform operations as implemented in the service. Clients should be able to handle user input and
