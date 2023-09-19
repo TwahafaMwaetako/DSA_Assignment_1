@@ -6,7 +6,7 @@ Released on: 30/08/2023.
 Due date: 22/09/ 2023 at midnight
 Total Marks: 100
 
-Group Members: !Haokhoeb Eichab(220007454), Mwaetako Twahafa(221087052), Romario Rhoman(221080457) 
+Group Members: !Haokhoeb Eichab(220007454), Mwaetako Twahafa(221087052), Romario Rhoman(221080457), Dausas Yasmine (217074553)
 
 Question 1: Restful APIs
 The problem centers on developing a Restful API for effectively managing staff, their offices, and
