@@ -1,0 +1,182 @@
+openapi: 3.0.0
+info:
+  title: Faculty of Computing and Informatics Staff API
+  description: This API provides a RESTful interface for managing staff, their offices, and allocated courses.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/fci/api/v1
+
+
+paths:
+  /lecturers:
+    get:
+      summary: Get all Lecturers information
+      operationId: get_all
+      description: Returns all Lecturers information
+      responses:
+        '200':
+          description: "A list of Lecturers"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Lecturer"
+        default:
+          $ref: "#/components/responses/ErrorResponse"
+    post:
+      summary: Insert a new Lecturers
+      operationId: insert_lecturer
+      description: Create a new Lecturer record and add it to the collection of Lecturers records
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Lecturer'
+      responses:
+        '201':
+          description: lecturer successfully created
+          content:
+            application/json:
+              schema:
+                properties:
+                  lecturerid:
+                    type: string
+                    description: the lecturername of the lecturer newly created
+        default:
+          $ref: "#/components/responses/ErrorResponse"
+
+
+  /lecturers/{staffNumber}:
+    parameters:
+      - name: staffNumber
+        in: path
+        description: staffNumber of the lecturer
+        schema:
+          type: string
+        required: true
+    get:
+      summary: Get a single lecturers info based on their staff number
+      operationId: get_lecture_by_staffNumber
+      description: Returns a single lecturer based on their staff number
+      responses:
+        '200':
+          description: lecturer response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lecturer'
+        default:
+          $ref: "#/components/responses/ErrorResponse"
+    put:
+      summary: Update an existing lecturer
+      operationId: update_lecturer
+      description: updates an existing lecturer information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Lecturer"
+      responses:
+        '200':
+          description: 'lecturer was successfully updated'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Lecturer"
+        default:
+          $ref: "#/components/responses/ErrorResponse"
+    delete:
+      summary: Delete an existing lecturer
+      operationId: delete_lecturer
+      description: deletes an existing lecturers information from the system
+      responses:
+        '204':
+          description: lecturer info was successfully deleted
+        default:
+          $ref: "#/components/responses/ErrorResponse"
+          
+  /lecturers/{officeNumber}/:
+    parameters:
+      - name: officeNumber
+        in: path
+        description: office number of the lecturer 
+        schema:
+          type: string
+        required: true
+    get:
+      summary: Get all lecturers Lecturers information based on their office number
+      operationId: get_all_by_office
+      description: Returns all lecturers Lecturers info 
+      responses:
+        '200':
+          description: "A list of Lecturers from the same office"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Lecturer"
+        default:
+          $ref: "#/components/responses/ErrorResponse"        
+
+components:
+  schemas:
+    Lecturer:
+      title: lecturer Description
+      type: object
+      properties:
+        staffNumber:
+          type: string
+          description: The staff number of the lecturer
+        officeNumber:
+          type: string
+          description: The office number of the lecturer 
+        title:
+          type: string
+          description: The title of the lecturer 
+        firstName:
+          type: string
+          description: the first name of the lecturer
+        lastName:
+          type: string
+          description: the last name of the lecturer
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course' 
+    Course:
+      title: course description
+      type: object
+      properties:
+        courseCode:
+          type: string
+          description: The course code
+        coursName:
+          type: string
+          description: The course name
+        nqfLevel:
+         type: string
+         description: The NQF level of the course
+    Error:
+      type: object
+      properties:
+        errorType:
+          type: string
+          enum:
+            - BadRequest
+
+            - Not Found
+
+            - InternalServerError
+        message:
+          type: string
+
+  responses:
+    ErrorResponse:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
