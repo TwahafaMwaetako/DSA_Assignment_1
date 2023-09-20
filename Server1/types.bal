@@ -6,27 +6,27 @@ public type Error record {
     string message?;
 };
 
-public type Lecturer record {
+public type Lecturer readonly & record{
     # The staff number of the lecturer
-    string staffNumber?;
+    string staffNumber;
     # The office number of the lecturer
-    string officeNumber?;
+    string officeNumber;
     # The title of the lecturer
-    string title?;
+    string title;
     # the first name of the lecturer
-    string firstName?;
+    string firstName;
     # the last name of the lecturer
-    string lastName?;
-    Course[] courses?;
+    string lastName;
+    Course[] courses;
 };
 
-public type Course record {
+public type Course readonly & record{
     # The course code
-    string courseCode?;
+    string courseCode;
     # The course name
-    string coursName?;
+    string coursName;
     # The NQF level of the course
-    string nqfLevel?;
+    string nqfLevel;
 };
 
 public type Inline_response_201 record {

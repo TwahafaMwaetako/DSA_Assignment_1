@@ -5,53 +5,40 @@ import ballerina/http;
 
 listener http:Listener ep0 = new (8080, config = {host: "localhost"});
 
+table<Lecturer> key(staffNumber) allLecturers = table [
+{staffNumber: "20232200", officeNumber:"k7", title:"Mr", firstName: "Gerson", lastName: "Eichab", courses:[{courseCode: "DSA217S", coursName: "Data Structures", nqfLevel: "5"}]}];
+
 service /fci/api/v1 on ep0 {
-    # Get all Lecturers information
-    #
-    # + return - returns can be any of following types
-    # Lecturer[] (A list of Lecturers)
-    # http:Response (Error response)
+    
     resource function get lecturers() returns Lecturer[]|http:Response {
+    return allLecturers.toArray();
     }
-    # Insert a new Lecturers
-    #
-    # + payload - parameter description 
-    # + return - returns can be any of following types
-    # Inline_response_201 (lecturer successfully created)
-    # http:Response (Error response)
+    
+    
     resource function post lecturers(@http:Payload Lecturer payload) returns Inline_response_201|http:Response {
+    http:Response lecturerAdded =new;
+    return lecturerAdded;
     }
-    # Get a single lecturers info based on their staff number
-    #
-    # + staffNumber - staffNumber of the lecturer 
-    # + return - returns can be any of following types
-    # Lecturer (lecturer response)
-    # http:Response (Error response)
+    
+    
     resource function get lecturers/[string staffNumber]() returns Lecturer|http:Response {
+    http:Response lecturerFound =new;
+    return lecturerFound;
     }
-    # Update an existing lecturer
-    #
-    # + staffNumber - staffNumber of the lecturer 
-    # + payload - parameter description 
-    # + return - returns can be any of following types
-    # Lecturer (lecturer was successfully updated)
-    # http:Response (Error response)
+    
+    
     resource function put lecturers/[string staffNumber](@http:Payload Lecturer payload) returns Lecturer|http:Response {
+    http:Response lecturerUpdated =new;
+    return lecturerUpdated;
     }
-    # Delete an existing lecturer
-    #
-    # + staffNumber - staffNumber of the lecturer 
-    # + return - returns can be any of following types
-    # http:NoContent (lecturer info was successfully deleted)
-    # http:Response (Error response)
+   
     resource function delete lecturers/[string staffNumber]() returns http:NoContent|http:Response {
+    http:Response lecturerRemoved =new;
+    return lecturerRemoved;
     }
-    # Get all lecturers Lecturers information based on their office number
-    #
-    # + officeNumber - office number of the lecturer 
-    # + return - returns can be any of following types
-    # Lecturer[] (A list of Lecturers from the same office)
-    # http:Response (Error response)
-    resource function get lecturers/[string officeNumber]() returns Lecturer[]|http:Response {
+    
+    resource function get lecturers2/[string officeNumber]() returns Lecturer[]|http:Response {
+    http:Response lecturerFound2 =new;
+    return lecturerFound2;
     }
 }
