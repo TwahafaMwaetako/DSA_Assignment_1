@@ -16,27 +16,41 @@ service /fci/api/v1 on ep0 {
     
     
     resource function post lecturers(@http:Payload Lecturer payload) returns Inline_response_201|http:Response {
+     allLecturers.add(payload);
     http:Response lecturerAdded =new;
     return lecturerAdded;
     }
     
     
     resource function get lecturers/[string staffNumber]() returns Lecturer|http:Response {
-    http:Response lecturerFound =new;
-    return lecturerFound;
+    Lecturer? lecturer = allLecturers[staffNumber];
+      if lecturer is () {
+    http:Response lecturerNotFound =new;
+    return lecturerNotFound;
+     } else {
+        return lecturer;
+    }
     }
     
     
     resource function put lecturers/[string staffNumber](@http:Payload Lecturer payload) returns Lecturer|http:Response {
+     allLecturers.put(payload);
     http:Response lecturerUpdated =new;
     return lecturerUpdated;
     }
    
     resource function delete lecturers/[string staffNumber]() returns http:NoContent|http:Response {
+    Lecturer? dellecturer = allLecturers[staffNumber];
+     if dellecturer is () {
+        http:Response lecturerNotFound =new;
+        return lecturerNotFound;
+        } else {
+    dellecturer = allLecturers.removeIfHasKey(staffNumber);
     http:Response lecturerRemoved =new;
     return lecturerRemoved;
     }
-    
+
+    }   
     resource function get lecturers2/[string officeNumber]() returns Lecturer[]|http:Response {
     http:Response lecturerFound2 =new;
     return lecturerFound2;
