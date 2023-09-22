@@ -48,7 +48,7 @@ paths:
           $ref: "#/components/responses/ErrorResponse"
 
 
-  /lecturers/{staffNumber}:
+  /lecturers/staff/{staffNumber}:
     parameters:
       - name: staffNumber
         in: path
@@ -97,7 +97,7 @@ paths:
         default:
           $ref: "#/components/responses/ErrorResponse"
           
-  /lecturers/{officeNumber}/:
+  /lecturers/office/{officeNumber}/:
     parameters:
       - name: officeNumber
         in: path

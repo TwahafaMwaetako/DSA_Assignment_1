@@ -5,25 +5,32 @@ import ballerina/http;
 
 listener http:Listener ep0 = new (8080, config = {host: "localhost"});
 
-table<Lecturer> key(staffNumber) allLecturers = table [
+isolated table<Lecturer> key(staffNumber) allLecturers = table [
 {staffNumber: "20232200", officeNumber:"k7", title:"Mr", firstName: "Gerson", lastName: "Eichab", courses:[{courseCode: "DSA217S", coursName: "Data Structures", nqfLevel: "5"}]}];
 
-service /fci/api/v1 on ep0 {
+isolated service /fci/api/v1 on ep0 {
     
-    resource function get lecturers() returns Lecturer[]|http:Response {
-    return allLecturers.toArray();
+    isolated resource function get lecturers() returns Lecturer[]|http:Response {
+    lock{
+    return allLecturers.toArray().clone();
+    }
     }
     
     
-    resource function post lecturers(@http:Payload Lecturer payload) returns Inline_response_201|http:Response {
-     allLecturers.add(payload);
+    isolated resource function post lecturers(@http:Payload Lecturer payload) returns Inline_response_201|http:Response {
+    lock{
+    allLecturers.add(payload);
+    }
     http:Response lecturerAdded =new;
     return lecturerAdded;
     }
     
     
-    resource function get lecturers/[string staffNumber]() returns Lecturer|http:Response {
-    Lecturer? lecturer = allLecturers[staffNumber];
+    isolated resource function get lecturers/staff/[string staffNumber]() returns Lecturer|http:Response {
+    Lecturer? lecturer;
+    lock{
+    lecturer = allLecturers[staffNumber];
+    }
       if lecturer is () {
     http:Response lecturerNotFound =new;
     return lecturerNotFound;
@@ -33,26 +40,43 @@ service /fci/api/v1 on ep0 {
     }
     
     
-    resource function put lecturers/[string staffNumber](@http:Payload Lecturer payload) returns Lecturer|http:Response {
-     allLecturers.put(payload);
+    isolated resource function put lecturers/staff/[string staffNumber](@http:Payload Lecturer payload) returns Lecturer|http:Response {
+    lock{
+    allLecturers.put(payload);
+    }
     http:Response lecturerUpdated =new;
     return lecturerUpdated;
     }
+    
    
-    resource function delete lecturers/[string staffNumber]() returns http:NoContent|http:Response {
-    Lecturer? dellecturer = allLecturers[staffNumber];
-     if dellecturer is () {
+    isolated resource function delete lecturers/staff/[string staffNumber]() returns http:NoContent|http:Response {
+    Lecturer? delLecturer;
+    lock{
+    delLecturer = allLecturers[staffNumber];
+    }
+     if delLecturer is () {
         http:Response lecturerNotFound =new;
         return lecturerNotFound;
         } else {
-    dellecturer = allLecturers.removeIfHasKey(staffNumber);
+    lock{    
+    _ = allLecturers.remove(staffNumber);
+    }
     http:Response lecturerRemoved =new;
     return lecturerRemoved;
     }
-
-    }   
-    resource function get lecturers2/[string officeNumber]() returns Lecturer[]|http:Response {
-    http:Response lecturerFound2 =new;
-    return lecturerFound2;
     }
+       
+    isolated resource function get lecturers/office/[string officeNumber]() returns Lecturer[]|http:Response {
+    table<Lecturer> key(staffNumber) emptyTable = table [];
+    table<Lecturer> key(staffNumber) officeFilter;
+    lock{
+    officeFilter = allLecturers.clone();
+    }
+    if (officeFilter == emptyTable){
+    http:Response noLecInOffice = new;
+    return noLecInOffice;
+    } else {
+    return officeFilter.filter(sameOffice=> sameOffice.officeNumber == officeNumber).toArray();
+}
+}
 }
