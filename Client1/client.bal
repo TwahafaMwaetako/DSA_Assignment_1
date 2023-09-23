@@ -27,10 +27,13 @@ public function main() returns error?{
     io:println("Press 0 to exit.");
     i = io:readln("Enter choice 1 - 6:");
     
+    io:println(" ");
     
     if i == "1"{
     Lecturer[] allLecturers= check fciClient->get("/fci/api/v1/lecturers");
     io:println("Here are all the lecturers",allLecturers.toJsonString());
+    io:println(" ");
+    io:println(" ");
     
     } else if i == "2"{
        
@@ -61,10 +64,13 @@ public function main() returns error?{
     if (resp.statusCode == 201) {
         io:println(" \n The post request succesful ", resp.getJsonPayload(), "record added");
     }  
-        
+    io:println(" ");
+    io:println(" ");
+    io:println(" ");
+    
     } else if i == "3"{
        
-         a = io:readln("Enter the staff number");
+         a = io:readln("Enter the staff number: ");
          b = io:readln("Enter the new office number: "); 
          c = io:readln("Enter the new title: ");
          d = io:readln("Enter the first name: ");
@@ -89,12 +95,26 @@ public function main() returns error?{
        if (resp2.statusCode == 201) {
         io:println(" \n The put request succesful ", resp2.getJsonPayload(), "record updated");
    }
+    io:println(" ");
+    io:println(" ");
+    io:println(" ");
         
     } else if i == "4" {
-        
+      a = io:readln("Enter the staff number of the lecturer you are looking for");   
      Lecturer a_lecturer = check fciClient->get("/fci/api/v1/lecturers/staff/" + a);   
       io:println("Get Request", a_lecturer.toString());
+    io:println(" ");
+    io:println(" ");
+    io:println(" ");
          
+    }  else if i == "5" {
+     
+     break;
+    
+    } else if i == "6" {
+    
+      break;
+          
     } else {
       infinity = false;
     }
