@@ -1,44 +1,41 @@
 import ballerina/grpc;
 
 listener grpc:Listener ep = new (9090);
+userDetails[] allUsers = [{}];
+bookDetails[] books = [{}];
 
 @grpc:Descriptor {value: LIBRARY_DESC}
-service "Library" on ep {
 
-    // Define an array to hold the books
-    bookDetails[] books = [{}];
-    userDetails[] users = [{}];
-    usrRequest[] requests = [{}];
-    clientRequest[] clientRequests = [{}];
-
+    service "Library" on ep {
     remote function add_book(bookDetails value) returns response|error {
-       bookDetails.push(value);
-        return {status: "success", message: "operation was successful"};
+       response bookAdded = { resp: "Book added successfully" };
+        return bookAdded;
     }
 
     remote function update_book(bookDetails value) returns response|error {
+        response bookUpdated = { resp: "Book updated successfully" };
+        return bookUpdated;
 
     }
     remote function create_users(userDetails value) returns response|error {
-        userDetails.push(value);
-        return {status: "success", message: "operation was successful"};
+        response userCreated = { resp: "User created successfully" };
+        return userCreated;
     }
     remote function remove_book(usrRequest value) returns response|error {
-        usrRequest.push(value);
-        return {status: "success", message: "operation was successful"};
+        response bookRemoved = { resp: "book removed successfully" };
+            return bookRemoved;
+
     }
     
     remote function borrow_book(usrRequest value) returns response|error {
-        usrRequest.push(value);
-        return {status: "success", message: "operation was successful"};
+        response bookBorrowed = { resp: "book borrowed successfully" };
+        return bookBorrowed;
     }
     remote function list_all_books(clientRequest value) returns stream<bookDetails, error?>|error {
-        bookDetails[] allBooks = ...; // retrieve all books from the database or other source
-        return allBooks.toStream();
+         return books.toStream();
     }
     remote function list_available_books(clientRequest value) returns stream<bookDetails, error?>|error {
-        bookDetails[] availableBooks = ...; // retrieve all available books from the database or other source
-        return availableBooks.toStream();
+        return books.toStream();
     }
 }
 
