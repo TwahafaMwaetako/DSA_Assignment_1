@@ -110,14 +110,11 @@ public function main() returns error?{
     }  else if i == "5" { 
     b= io:readln("Enter office number");
      Lecturer b_lecturer = check fciClient->get("/fci/api/v1/lecturers/officeNumber"+ b);
-    io:println();
-error er=> {
-io:println("Error occurred: " +b); }
+    io:println("");
 io:println("\n\n");
     } else if i == "6" {
     a= io:readln("Enter staff number of lecturer to remove");
     Lecturer a_lecturer = check fciClient->get("/fci/api/v1/lecturers/staff/" + a);
-  
     io:println("\n\n");
     } else {
       infinity = false;
