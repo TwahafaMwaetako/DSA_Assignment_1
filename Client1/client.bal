@@ -109,7 +109,7 @@ public function main() returns error?{
          
     }  else if i == "5" { 
     b= io:readln("Enter office number");
-     Lecturer b_lecturer = check fciClient->get("/fci/api/v1/lecturers/officeNumber"+ b);
+     Lecturer b_lecturer = check fciClient->get("/fci/api/v1/lecturers/office/"+ b);
     io:println("");
 io:println("\n\n");
     } else if i == "6" {
