@@ -3,11 +3,11 @@ import ballerina/io;
 LibraryClient ep = check new ("http://localhost:9090");
 
 public function main() returns error? {
-    bookDetails add_bookRequest = {isbn: "ballerina", title: "ballerina", author: "ballerina", isborrowed: "ballerina"};
+    bookDetails add_bookRequest = {isbn: "", title: "ballerina", author: "ballerina", isborrowed: "ballerina"};
     response add_bookResponse = check ep->add_book(add_bookRequest);
     io:println(add_bookResponse);
 
-    bookDetails update_bookRequest = {isbn: "ballerina", title: "ballerina", author: "ballerina", isborrowed: "ballerina"};
+    bookDetails update_bookRequest = {isbn: "", title: "ballerina", author: "ballerina", isborrowed: "ballerina"};
     response update_bookResponse = check ep->update_book(update_bookRequest);
     io:println(update_bookResponse);
 
@@ -15,15 +15,15 @@ public function main() returns error? {
     response create_usersResponse = check ep->create_users(create_usersRequest);
     io:println(create_usersResponse);
 
-    usrRequest remove_bookRequest = {isbn: "ballerina"};
+    usrRequest remove_bookRequest = {isbn: ""};
     response remove_bookResponse = check ep->remove_book(remove_bookRequest);
     io:println(remove_bookResponse);
 
-    usrRequest locate_bookRequest = {isbn: "ballerina"};
+    usrRequest locate_bookRequest = {isbn: ""};
     response locate_bookResponse = check ep->locate_book(locate_bookRequest);
     io:println(locate_bookResponse);
 
-    usrRequest borrow_bookRequest = {isbn: "ballerina"};
+    usrRequest borrow_bookRequest = {isbn: ""};
     response borrow_bookResponse = check ep->borrow_book(borrow_bookRequest);
     io:println(borrow_bookResponse);
 

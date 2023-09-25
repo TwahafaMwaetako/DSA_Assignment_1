@@ -31,6 +31,20 @@ bookDetails[] books = [{}];
         response bookBorrowed = { resp: "book borrowed successfully" };
         return bookBorrowed;
     }
+   remote function locate_book(usrRequest value) returns bookDetails|error {
+        int x = 0;
+        int y = books.length();
+            while(x < y) {
+                    if (books[x].isbn == value.isbn){
+                return books[x];
+                    } else {
+            x = x + 1;
+            
+        }
+    } return books[x];
+}
+
+
     remote function list_all_books(clientRequest value) returns stream<bookDetails, error?>|error {
          return books.toStream();
     }

@@ -375,7 +375,7 @@ public type bookDetails record {|
 
 @protobuf:Descriptor {value: LIBRARY_DESC}
 public type usrRequest record {|
-    string isbn = "";
+   string isbn = "";
 |};
 
 @protobuf:Descriptor {value: LIBRARY_DESC}
