@@ -1,7 +1,4 @@
 import ballerina/grpc;
-import ballerina/http;
-import ballerina/io;
-import ballerina/log;
 
 listener grpc:Listener ep = new (9090);
 
@@ -10,7 +7,7 @@ service "Library" on ep {
 
 
     remote function add_book(bookDetails value) returns response|error {
-        //get the book details from the request
+        // Implement the logic to add books to the library
     }
     remote function update_book(bookDetails value) returns response|error {
     }
