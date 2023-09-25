@@ -115,6 +115,8 @@ io:println("\n\n");
     } else if i == "6" {
     a= io:readln("Enter staff number of lecturer to remove");
     Lecturer a_lecturer = check fciClient->delete("/fci/api/v1/lecturers/staff/" + a);
+    resp.statusCode == 204 io:println("staff number " +b+" has been deleted.");
+  
     io:println("\n\n");
     } else {
       infinity = false;
