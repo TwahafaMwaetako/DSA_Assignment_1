@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package library;
+
+
+service Library {
+  rpc add_book(bookDetails) returns (response);
+  rpc update_book(bookDetails) returns (response);
+  rpc create_users(userDetails) returns (response);
+  rpc remove_book(usrRequest) returns (response);
+  rpc list_all_books(clientRequest) returns (stream bookDetails);
+  rpc list_available_books(clientRequest) returns (stream bookDetails);
+  rpc locate_book(usrRequest) returns (response);
+  rpc borrow_book(usrRequest) returns (response);
+}
+
+message response{
+  string resp = 1;
+}
+
+message clientRequest {
+  string clRequest = 1;
+}
+
+message usrRequest{
+  string isbn = 1;
+}
+
+
+message bookDetails{
+  string isbn = 1;
+  string title = 2;
+  string author = 3;
+  string isborrowed = 4;
+}
+
+message userDetails {
+  string userID = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string role = 4;
+}
+
