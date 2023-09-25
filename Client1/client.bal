@@ -109,15 +109,13 @@ public function main() returns error?{
          
     }  else if i == "5" { 
     b= io:readln("Enter office number");
-     Lecturer b_lecturer = check fciClient->get("/fci/api/v1/lecturers/office/"+ b);
+     Lecturer[] b_lecturer = check fciClient->get("/fci/api/v1/lecturers/office/"+ b);
     io:println("");
 io:println("\n\n");
+
     } else if i == "6" {
     a= io:readln("Enter staff number of lecturer to remove");
-    Lecturer a_lecturer = check fciClient->delete("/fci/api/v1/lecturers/staff/" + a);1
-io:println("staff number " +b+" has been deleted.");
-
-    io:println("\n\n");
+    Lecturer a_lecturer = check fciClient->delete("/fci/api/v1/lecturers/staff/" + a);
     } else {
       infinity = false;
     }
