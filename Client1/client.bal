@@ -18,7 +18,7 @@ public function main() returns error?{
   
     while infinity == true{
     io:println("Welcome to the fci lecturer management system");
-    io:println("Press 1 to 1 to see all lecturers in the system.");
+    io:println("Press 1 to see all lecturers in the system.");
     io:println("Press 2 to add a lecturers to the system.");
     io:println("Press 3 to update a lecturer's information or courses");
     io:println("Press 4 to search for a lecturer by staff id");
@@ -107,14 +107,18 @@ public function main() returns error?{
     io:println(" ");
     io:println(" ");
          
-    }  else if i == "5" {
-     
-     break;
-    
+    }  else if i == "5" { 
+    b= io:readln("Enter office number");
+     Lecturer b_lecturer = check fciClient->get("/fci/api/v1/lecturers/officeNumber"+ b);
+    io:println();
+error er=> {
+io:println("Error occurred: " +b); }
+io:println("\n\n");
     } else if i == "6" {
-    
-      break;
-          
+    a= io:readln("Enter staff number of lecturer to remove");
+    Lecturer a_lecturer = check fciClient->get("/fci/api/v1/lecturers/staff/" + a);
+  
+    io:println("\n\n");
     } else {
       infinity = false;
     }
