@@ -114,7 +114,7 @@ public function main() returns error?{
 io:println("\n\n");
     } else if i == "6" {
     a= io:readln("Enter staff number of lecturer to remove");
-    Lecturer a_lecturer = check fciClient->get("/fci/api/v1/lecturers/staff/" + a);
+    Lecturer a_lecturer = check fciClient->delete("/fci/api/v1/lecturers/staff/" + a);
     io:println("\n\n");
     } else {
       infinity = false;
