@@ -79,7 +79,7 @@ public function main() returns error?{
          g = io:readln("Enter the new course name: ");
          h = io:readln("Enter nqf levelof the new course: ");            
         
-          http:Response resp2 = check fciClient->/fci/api/v1/lecturers.post({
+          http:Response resp2 = check fciClient->/fci/api/v1/lecturers.put({
    staffNumber: a,
    officeNumber: b,
    title: c,
@@ -114,8 +114,7 @@ public function main() returns error?{
 io:println("\n\n");
     } else if i == "6" {
     a= io:readln("Enter staff number of lecturer to remove");
-    Lecturer a_lecturer = check fciClient->delete("/fci/api/v1/lecturers/staff/" + a);
-    check resp.statusCode == 204;
+    Lecturer a_lecturer = check fciClient->delete("/fci/api/v1/lecturers/staff/" + a);1
 io:println("staff number " +b+" has been deleted.");
 
     io:println("\n\n");
