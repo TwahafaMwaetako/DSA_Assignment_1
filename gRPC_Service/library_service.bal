@@ -1,8 +1,18 @@
 import ballerina/grpc;
 
 listener grpc:Listener ep = new (9090);
-userDetails[] allUsers = [{}];
-bookDetails[] books = [{}];
+userDetails[] allUsers = [{userID: "20232200", firstName: "Gerson", lastName: "Eichab", role:"student"},
+                            {userID: "20232202", firstName: "John", lastName: "Doe", role: "student"},
+                            {userID: "20232203", firstName: "Sarah", lastName: "Johnson", role: "student"},
+                            {userID: "20232201", firstName: "Emma", lastName: "Smith", role: "student"
+
+}];
+                            
+bookDetails[] books = [{isbn : "123456789", title : "The Great Gatsby", author : "F. Scott Fitzgerald", isborrowed : "No" },
+                            { isbn : "987654321", title : "To Kill a Mockingbird", author : "Harper Lee", isborrowed : "Yes" },
+                             { isbn : "456789123", title : "Pride and Prejudice", author : "Jane Austen", isborrowed : "No" },
+                              { isbn : "789123456", title : "1984", author : "George Orwell", isborrowed : "Yes" },
+                            { isbn : "321654987", title : "The Catcher in the Rye", author : "J.D. Salinger", isborrowed : "No" }];
 
 @grpc:Descriptor {value: LIBRARY_DESC}
 
